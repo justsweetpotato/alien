@@ -23,7 +23,7 @@ def run_game():
     # 开始游戏的主循环
     while True:
         # 响应按键和鼠标事件
-        gf.check_events()
+        gf.check_events(ship)
 
         # 绘制屏幕
         gf.update_screen(ai_settings, screen, ship)
