@@ -51,3 +51,15 @@ def update_screen(ai_settings, screen, ship, bullets):
 
     # 让最近绘制的屏幕可见
     pygame.display.flip()
+
+
+def update_bullets(bullets):
+    '''更新子弹位置, 删除已经消失的子弹'''
+
+    # 子弹移动
+    bullets.update()
+
+    # 删除已经消失的子弹
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)

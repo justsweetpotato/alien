@@ -28,19 +28,8 @@ def run_game():
     while True:
         # 响应按键和鼠标事件
         gf.check_events(ai_settings, screen, ship, bullets)
-
-        # 飞船移动
         ship.update()
-
-        # 子弹移动
-        bullets.update()
-
-        # 删除已经消失的子弹
-        for bullet in bullets.copy():
-            if bullet.rect.bottom <= 0:
-                bullets.remove(bullet)
-
-        # 绘制屏幕
+        gf.update_bullets(bullets)
         gf.update_screen(ai_settings, screen, ship, bullets)
 
 
