@@ -35,6 +35,11 @@ def run_game():
         # 子弹移动
         bullets.update()
 
+        # 删除已经消失的子弹
+        for bullet in bullets.copy():
+            if bullet.rect.bottom <= 0:
+                bullets.remove(bullet)
+
         # 绘制屏幕
         gf.update_screen(ai_settings, screen, ship, bullets)
 
