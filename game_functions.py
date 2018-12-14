@@ -62,7 +62,7 @@ def update_screen(ai_settings, screen, ship, aliens, bullets):
     pygame.display.flip()
 
 
-def update_bullets(aliens, bullets):
+def update_bullets(ai_settings, screen, ship, aliens, bullets):
     '''更新子弹位置, 删除已经消失的子弹'''
 
     # 子弹移动
@@ -74,6 +74,9 @@ def update_bullets(aliens, bullets):
             bullets.remove(bullet)
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
+    if len(aliens) == 0:
+        bullets.empty()
+        create_fleet(ai_settings, screen, ship, aliens)
 
 def get_number_aliens_x(ai_settings, alien_width):
     '''计算每行外星人容纳数'''
