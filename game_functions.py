@@ -72,11 +72,20 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+    check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
+
+
+def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+    '''响应子弹和外星人的碰撞'''
+    # 删除发生碰撞的子弹和外星人
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
     if len(aliens) == 0:
+        # 删除所以子弹, 并创建一群外星人
         bullets.empty()
         create_fleet(ai_settings, screen, ship, aliens)
+
 
 def get_number_aliens_x(ai_settings, alien_width):
     '''计算每行外星人容纳数'''
